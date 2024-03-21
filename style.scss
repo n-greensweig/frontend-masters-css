@@ -1,9 +1,14 @@
 @import './styles/base.scss';
 
+:root {
+  --primary-color: red;
+  --duration: 1s;
+  --easing: cubic-bezier(.5, 0, .5, 1);
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 5vmin;
-  background-color: #f4f4f4;
 }
 
 a {
@@ -12,6 +17,8 @@ a {
 
 h1 {
   margin: 0;
+  color: var(--primary-color);
+  transition: 1s;
 }
 
 small {
@@ -23,9 +30,38 @@ ul {
   margin: 1rem 0;
 }
 
+.container {
+  --primary-color: navy;
+}
+
 .ball {
+  --primary-color: green;
   height: 5vmin;
   width: 5vmin;
   border-radius: 50%;
-  background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
+  // background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
+  animation: slide-right var(--duration) var(--easing) infinite;
+  background-color: var(--primary-color);
+
+  &::before {
+    --primary-color: orange;
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: var(--primary-color);
+  }
+
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(50vw);
+  }
 }
