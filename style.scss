@@ -33,7 +33,7 @@ ul {
   animation-name: move-like-a-square;
   animation-duration: 2s;
   animation-fill-mode: both;
-  animation-iteration-count: infinite;
+  // animation-iteration-count: infinite;
 
   &:hover {
     animation-play-state: paused;
