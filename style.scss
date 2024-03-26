@@ -30,16 +30,22 @@ ul {
   border-radius: 50%;
   background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
   background: #fb2324;
-  // transition-property: background, transform;
-  // transition-duration: 0s;
-  // transition-timing-function: linear, ease-in-out;
-  
-  transition: all 2s .5s ease-in-out;
-  transition-property: background, transform;
+  animation-name: move-like-a-square;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
 
   &:hover {
-    margin: 3rem;
-    background: blue;
+    animation-play-state: paused;
+  }
+}
+
+@keyframes move-like-a-square {
+  from,
+  to {
+    transform: none;
+  }
+  50% {
     transform: scale(2);
   }
 }
