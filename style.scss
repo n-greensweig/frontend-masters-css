@@ -30,22 +30,20 @@ ul {
   border-radius: 50%;
   background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
   background: #fb2324;
-  animation-name: move-like-a-square;
-  animation-duration: 2s;
-  animation-fill-mode: both;
-  // animation-iteration-count: infinite;
 
-  &:hover {
-    animation-play-state: paused;
-  }
+  --duration: 1s;
+  --stagger: .5s;
+  --interval: calc(var(--duration) - var(--stagger));
+  animation: move-right var(--duration) calc(var(--interval) * var(--i)) both;
+
 }
 
-@keyframes move-like-a-square {
-  from,
-  to {
+@keyframes move-right {
+  from {
     transform: none;
   }
-  50% {
-    transform: scale(2);
+
+  to {
+    transform: translateX(25vw);
   }
 }

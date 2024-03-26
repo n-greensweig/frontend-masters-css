@@ -9,6 +9,7 @@
   --transition-easing: cubic-bezier(0.5, 0, 0.5, 1);
   --animation-duration: 0.8s;
 }
+
 body {
   display: flex;
   justify-content: center;
@@ -30,23 +31,42 @@ body {
   will-change: transform;
 
   --color: var(--color-gray);
+
   &:focus-within {
     --color: var(--color-blue);
   }
 
   animation: slide-up var(--animation-duration) var(--transition-easing);
+  --input-duration: calc(var(--animation-duration) / 2);
 
-  > .ui-input,
-  > .ui-button {
-    // Add animations here
+  >.ui-input,
+  .ui-button {
+    animation-name: slide-up;
+    animation-duration: var(--animation-duration);
+    animation-timing-function: inherit;
+    animation-fill-mode: both;
   }
 
-  > .ui-input {
-    // ...
+  >.ui-input {
+    animation-delay: var(--animation-duration);
+    animation-duration: var(--input-duration);
+    animation-fill-mode: both;
   }
-  > .ui-button {
-    // ...
+
+  .ui-button {
+    // animation-delay: calc(var(--animation-duration) + var(--input-duration));
+    animation-name: slide-up;
+    animation-duration: var(--animation-duration);
+    animation-timing-function: inherit;
+    animation-fill-mode: both;
   }
+}
+
+.button-wrapper {
+  animation-name: shake;
+  animation-duration: var(--animation-duration);
+  animation-timing-function: inherit;
+  animation-fill-mode: both;
 }
 
 .ui-input {
@@ -84,6 +104,7 @@ body {
     opacity: 0;
     transform: translateY(100%);
   }
+
   to {
     opacity: 1;
     transform: none;
@@ -91,12 +112,14 @@ body {
 }
 
 @keyframes shake {
+
   20%,
   40%,
   60%,
   80% {
     transform: translateX(1%);
   }
+
   10%,
   30%,
   50%,
@@ -104,6 +127,7 @@ body {
   90% {
     transform: translateX(-1%);
   }
+
   from,
   to {
     transform: none;
