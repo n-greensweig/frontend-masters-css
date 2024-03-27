@@ -26,14 +26,45 @@
       <li><a href="/06-reactive/">Reactive Animations</a></li>
       <li><a href="/examples/inflight/">Inflight Example</a></li>
     </ul>
-    <div class="container">
+    <!-- <div class="container">
       <div class="ball" style="--i: 0"></div>
       <div class="ball" style="--i: 1"></div>
       <div class="ball" style="--i: 2"></div>
       <div class="ball" style="--i: 3"></div>
       <div class="ball" style="--i: 4"></div>
-    </div>
+    </div> -->
+    <button class="button">Click me</button>
   </div>
 </body>
+<script>
+  const app = document.getElementById('app');
+  const button = document.querySelector('button');
+
+  const machine = {
+    initial: 'start',
+    states: {
+      start: {
+        on: {
+          CLICK: 'loading',
+        },
+      },
+      loading: {
+        on: {
+          CLICK: 'success',
+        },
+      },
+      success: {
+        on: {
+          CLICK: 'loading',
+        },
+      },
+    }
+  }
+  button.addEventListener('click', () => {
+    const currentState = app.dataset.state ?? machine.initial;
+    const nextState = machine.states[currentState].on.CLICK ?? currentState;
+    app.dataset.state = nextState;
+  });
+</script>
 
 </html>

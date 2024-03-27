@@ -5,6 +5,20 @@ body {
   padding: 5vmin;
 }
 
+#app {
+  --opacity: 1;
+
+  &[data-state="loading"] {
+    --opacity: .5;
+    --bg: orange;
+  }
+  &[data-state="success"] {
+    --opacity: .5;
+    --bg: green;
+  }
+  background: var(--bg, white);
+}
+
 a {
   color: blue;
 }
@@ -12,6 +26,7 @@ a {
 h1 {
   margin: 0;
   color: var(--primary-color);
+  opacity: var(--opacity);
 }
 
 small {
@@ -46,4 +61,26 @@ ul {
   to {
     transform: translateX(25vw);
   }
+}
+
+.button {
+  appearance: none;
+  background: blue;
+  color: white;
+  font-weight: bold;
+  padding: 2rem 3rem;
+  border: none;
+  transition: all .3s;
+
+  opacity: var(--opacity);
+
+  // &:hover {
+  //   opacity: .5;
+  // }
+
+  // &:active {
+  //   transition-duration: .15s;
+  //   transform: translateY(20%);
+  //   opacity: 1;
+  // }
 }
